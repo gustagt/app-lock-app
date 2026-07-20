@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'app/theme/app_theme.dart';
-import 'features/dashboard/dashboard_screen.dart';
+import 'core/data/database/database_initializer.dart';
+import 'core/theme/app_theme.dart';
+import 'features/dashboard/presentation/dashboard_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseInitializer.init();
   runApp(const AppLockApp());
 }
 
