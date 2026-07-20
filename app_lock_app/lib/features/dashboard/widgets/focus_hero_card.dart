@@ -11,10 +11,10 @@ class FocusHeroCard extends StatelessWidget {
 
   const FocusHeroCard({
     super.key,
-    this.time = '2h 34min',
-    this.progress = 0.76,
-    this.percentageChange = '12%',
-    this.metaLabel = '76% da meta diária',
+    this.time = '0h 00min',
+    this.progress = 0.0,
+    this.percentageChange = '0%',
+    this.metaLabel = '0% da meta diária',
   });
 
   @override
@@ -24,9 +24,7 @@ class FocusHeroCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(AppSpacing.lg),
-        border: Border.all(
-          color: AppColors.primary.withValues(alpha: 0.08),
-        ),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.08)),
         boxShadow: AppShadows.medium(AppColors.primary),
       ),
       child: Column(
@@ -50,8 +48,8 @@ class FocusHeroCard extends StatelessWidget {
               Text(
                 'Tempo de foco',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
+                  color: AppColors.textSecondary,
+                ),
               ),
             ],
           ),
@@ -59,10 +57,7 @@ class FocusHeroCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                time,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
+              Text(time, style: Theme.of(context).textTheme.displayLarge),
               const SizedBox(width: AppSpacing.xs),
               Padding(
                 padding: const EdgeInsets.only(bottom: AppSpacing.xxs),
@@ -87,9 +82,9 @@ class FocusHeroCard extends StatelessWidget {
                       Text(
                         percentageChange,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.success,
-                              fontWeight: FontWeight.w600,
-                            ),
+                          color: AppColors.success,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
@@ -110,9 +105,9 @@ class FocusHeroCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.xs),
           Text(
             metaLabel,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textCaption,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textCaption),
           ),
         ],
       ),

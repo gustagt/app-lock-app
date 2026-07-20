@@ -2,12 +2,14 @@ class UserPreferencesModel {
   final String userName;
   final bool focusModeActive;
   final int dailyGoalMinutes;
+  final DateTime? focusSessionStartedAt;
   final DateTime? updatedAt;
 
   const UserPreferencesModel({
     this.userName = 'Gustavo',
     this.focusModeActive = true,
     this.dailyGoalMinutes = 180,
+    this.focusSessionStartedAt,
     this.updatedAt,
   });
 
@@ -15,12 +17,14 @@ class UserPreferencesModel {
     String? userName,
     bool? focusModeActive,
     int? dailyGoalMinutes,
+    DateTime? focusSessionStartedAt,
     DateTime? updatedAt,
   }) {
     return UserPreferencesModel(
       userName: userName ?? this.userName,
       focusModeActive: focusModeActive ?? this.focusModeActive,
       dailyGoalMinutes: dailyGoalMinutes ?? this.dailyGoalMinutes,
+      focusSessionStartedAt: focusSessionStartedAt ?? this.focusSessionStartedAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
@@ -31,6 +35,7 @@ class UserPreferencesModel {
       'user_name': userName,
       'focus_mode_active': focusModeActive ? 1 : 0,
       'daily_goal_minutes': dailyGoalMinutes,
+      'focus_session_started_at': focusSessionStartedAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
     };
   }
@@ -40,6 +45,9 @@ class UserPreferencesModel {
       userName: map['user_name'] as String,
       focusModeActive: map['focus_mode_active'] == 1,
       dailyGoalMinutes: map['daily_goal_minutes'] as int,
+      focusSessionStartedAt: map['focus_session_started_at'] != null
+          ? DateTime.parse(map['focus_session_started_at'] as String)
+          : null,
       updatedAt: map['updated_at'] != null
           ? DateTime.parse(map['updated_at'] as String)
           : null,

@@ -82,6 +82,7 @@ void main() {
       expect(columns, contains('user_name'));
       expect(columns, contains('focus_mode_active'));
       expect(columns, contains('daily_goal_minutes'));
+      expect(columns, contains('focus_session_started_at'));
       expect(columns, contains('updated_at'));
     });
 

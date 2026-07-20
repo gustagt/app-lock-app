@@ -18,8 +18,9 @@ class DatabaseHelper {
     final path = p.join(dbPath, filePath);
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _createDB,
+      onUpgrade: _upgradeDB,
     );
   }
 
@@ -54,10 +55,19 @@ class DatabaseHelper {
         user_name TEXT NOT NULL DEFAULT 'Gustavo',
         focus_mode_active INTEGER NOT NULL DEFAULT 1,
         daily_goal_minutes INTEGER NOT NULL DEFAULT 180,
+        focus_session_started_at TEXT,
         updated_at TEXT,
         CHECK (id = 1)
       )
     ''');
+  }
+
+  Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await db.execute(
+        "ALTER TABLE user_preferences ADD COLUMN focus_session_started_at TEXT",
+      );
+    }
   }
 
   Future<void> close() async {
